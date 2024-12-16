@@ -4,7 +4,8 @@
     margin: 10px 0;
     padding: 6px 18px;
     background-color: #ffebd6;
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px;
+    width: 100%;
 }
 
 .client-detail-btn {

@@ -1,0 +1,26 @@
+.clientslist-container{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 6px 18px;
+    background-color: #ffebd6;
+    border-radius: 4px 0 0 4px;
+}
+
+.client-detail-btn {
+    display: flex;
+    background-color: #ffd7b0;
+    font-size: medium;
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1.5px solid #ff8000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.client-detail-btn:hover{
+    background-color: #ffc285;
+}

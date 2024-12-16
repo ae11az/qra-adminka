@@ -27,6 +27,13 @@ function RightNavbar() {
                     >
                         Tariff list
                     </button>
+                    
+                    <button
+                        className="tariff-list-btn"
+                        onClick={() => navigate('/home')} // Добавьте этот маршрут, если нужно
+                    >
+                        Client list
+                    </button>
                 </div>
             </div>
         </>

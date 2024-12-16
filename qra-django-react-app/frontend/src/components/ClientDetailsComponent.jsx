@@ -4,7 +4,7 @@ import axios from "axios";
 import "../styles/ClientDetailsComponent.css";
 import deleteIcon from "../assets/deleteIcon.svg";
 
-function ClientDetail() {
+function ClientDetailComponent() {
     const { id } = useParams(); // Получаем id из URL
     const navigate = useNavigate();
     const [client, setClient] = useState(null);
@@ -111,4 +111,4 @@ function ClientDetail() {
     );
 }
 
-export default ClientDetail;
+export default ClientDetailComponent;

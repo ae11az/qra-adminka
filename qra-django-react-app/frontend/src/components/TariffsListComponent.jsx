@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function TariffsListComponent() {
-    const [tariffs, setTariffs] = useState([]); // Инициализация как пустой массив
+    const [tariffs, setTariffs] = useState([]); // Полный список тарифов
+    const [filteredTariffs, setFilteredTariffs] = useState([]); // Отфильтрованный список
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState(""); // Строка поиска
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,9 +17,9 @@ function TariffsListComponent() {
             .then((response) => {
                 const data = response.data;
                 console.log("API response:", data); // Для отладки
-                // Если данные - объект, превращаем его в массив
-                if (typeof data === "object" && data !== null) {
-                    setTariffs(Array.isArray(data) ? data : [data]); // Поддержка массива и одиночного объекта
+                if (Array.isArray(data)) {
+                    setTariffs(data); // Сохраняем полный список
+                    setFilteredTariffs(data); // Инициализируем отфильтрованный список
                 } else {
                     console.error("Invalid data format received:", data);
                     setError("Unexpected data format.");
@@ -31,6 +33,16 @@ function TariffsListComponent() {
             });
     }, []);
 
+    // Обновляем список при изменении строки поиска
+    useEffect(() => {
+        const query = searchQuery.toLowerCase(); // Приводим запрос к нижнему регистру
+        setFilteredTariffs(
+            tariffs.filter(tariff =>
+                tariff.name.toLowerCase().includes(query) // Фильтрация по имени
+            )
+        );
+    }, [searchQuery, tariffs]);
+
     const handleTariffClick = (tariffId) => {
         navigate(`/tariffs/${tariffId}`);
     };
@@ -40,21 +52,33 @@ function TariffsListComponent() {
 
     return (
         <div className="tariffslist-container">
-            <h2 className="tariffslist-h2 roboto-regular">Tariff list</h2>
-            {tariffs.length > 0 ? (
-                tariffs.map((tariff) => (
-                    <div key={tariff.id} className="tariff-info">
-                        <button
-                            className="tariff-detail-btn roboto-regular"
-                            onClick={() => handleTariffClick(tariff.id)}
-                        >
-                            {tariff.name} ---- {tariff.price} som 
-                        </button>
-                    </div>
-                ))
-            ) : (
-                <p>No tariffs found.</p>
-            )}
+            <h2 className="tariffslist-h2 roboto-regular">Tariff List - {tariffs.length}</h2>
+            <div className="getUser">
+                <i className="fas fa-search"></i>
+                <input
+                    className="nav-input"
+                    type="text"
+                    placeholder="Search tariff..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </div>
+            <div className="scroll-tarifflist-container">
+                {filteredTariffs.length > 0 ? (
+                    filteredTariffs.slice().map((tariff) => (
+                        <div key={tariff.id} className="tariff-info">
+                            <button
+                                className="tariff-detail-btn roboto-regular"
+                                onClick={() => handleTariffClick(tariff.id)}
+                            >
+                                {tariff.name} - {tariff.price} som
+                            </button>
+                        </div>
+                    ))
+                ) : (
+                    <p>No tariffs found.</p>// Сообщение, если ничего не найдено
+                )}
+            </div>
         </div>
     );
 }

@@ -31,7 +31,7 @@ function ClientDetailComponent() {
             axios.delete(`/api/clients/${clientId}/`)
                 .then(() => {
                     alert("Client deleted successfully.");
-                    navigate("/clients"); // Возвращаемся к списку клиентов
+                    navigate("/home"); // Возвращаемся к списку клиентов
                 })
                 .catch((err) => {
                     console.error("Failed to delete client:", err);

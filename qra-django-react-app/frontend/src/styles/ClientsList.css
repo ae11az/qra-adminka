@@ -25,3 +25,29 @@
 .client-detail-btn:hover{
     background-color: #ffc285;
 }
+
+.getUser{
+    margin-bottom: 24px;
+}
+
+.clientlist-h2{
+    margin-bottom: 10px;
+}
+
+.scroll-clientlist-container {
+    max-height: 475px; /* Ограничиваем высоту для отображения 6 элементов */
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+    border: 1px solid #e0e0e0; /* Светлая граница */
+    border-radius: 8px; /* Скругленные углы */
+    background-color: #ffffff; /* Белый фон */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    padding: 10px;
+    margin-top: 15px;
+}
+.client-info {
+    margin-bottom: 10px;
+}
+
+.scroll-clientlist-container {
+    scrollbar-width:none;
+}

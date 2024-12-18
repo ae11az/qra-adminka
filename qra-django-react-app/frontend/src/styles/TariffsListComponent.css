@@ -25,3 +25,20 @@
 .tariff-detail-btn:hover{
     background-color: #ffc285;
 }
+
+/* Контейнер для списка тарифов */
+.scroll-tarifflist-container {
+    max-height: 475px; /* Ограниченная высота для прокрутки */
+    overflow-y: auto; /* Вертикальная прокрутка */
+    border: 1px solid #e0e0e0; /* Светлая граница */
+    border-radius: 8px; /* Скруглённые углы */
+    background-color: #ffffff; /* Фон */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    padding: 10px;
+    margin-top: 15px;
+}
+
+/* Для Firefox */
+.scroll-tarifflist-container {
+    scrollbar-width: none;
+}

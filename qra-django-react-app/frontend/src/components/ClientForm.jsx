@@ -63,6 +63,7 @@ function ClientForm() {
             setClientName("");
             setSelectedTariff("");
             setVisitCount(0);
+            navigate("/home")
         } catch (error) {
             setStatus(`Error: ${error.message}`);
         }
